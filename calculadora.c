@@ -10,6 +10,7 @@ double lerNumero() {
 
     return numero;
 }
+
 int main() {
     int opcao = 0;
     char continuar = 's';
@@ -24,9 +25,20 @@ int main() {
     printf("5 - Sair\n");
 
     printf("Escolha uma opção: ");
+
 if (scanf("%d", &opcao) != 1) {
     printf("Entrada invalida!\n");
     while (getchar() != '\n');
+    continue;
+}
+
+if (getchar() != '\n') {
+    printf("Entrada invalida! Digite apenas um número inteiro.\n");
+    while (getchar() != '\n');
+    continue;
+}
+if (opcao < 1 || opcao > 5) {
+    printf("Opção inválida! Escolha de 1 a 5.\n");
     continue;
 }
 switch (opcao) {
@@ -92,19 +104,32 @@ if (opcao == 5) {
     printf("Obrigado por usar a calculadora! Até a próxima.\n");
 } else {
     printf("Deseja realizar outra operação? (s/n): ");
+scanf(" %c", &continuar);
+
+if (continuar == 'S') {
+    continuar = 's';
+} else if (continuar == 'N') {
+    continuar = 'n';
+}
+
+while (continuar != 's' && continuar != 'n') {
+    printf("Resposta inválida! Digite s ou n: ");
     scanf(" %c", &continuar);
 
-    while (continuar != 's' && continuar != 'n') {
-        printf("Resposta inválida! Digite s ou n: ");
-        while (getchar() != '\n');
-        scanf(" %c", &continuar);
+    if (continuar == 'S') {
+        continuar = 's';
+    } else if (continuar == 'N') {
+        continuar = 'n';
     }
+}
+
+
+}
 
     if (continuar == 'n') {
         printf("Obrigado por usar a calculadora! Até a próxima.\n");
     }
 }
 
-}
     return 0;
 }
